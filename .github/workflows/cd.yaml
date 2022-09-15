@@ -9,7 +9,7 @@ jobs:
     steps:
 
     - name: Download Repository
-    - uses: actions/checkout@v2 # Download do repositorio para o ubuntu-latest.
+      uses: actions/checkout@v2 # Download do repositorio para o ubuntu-latest.
 
     - name: Setup Enverimmont Build Docker
       id: docker_meta
