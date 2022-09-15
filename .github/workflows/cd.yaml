@@ -48,7 +48,7 @@ jobs:
 
     - name: teste do run
       run: |
-        echo "ALEX CERQUEIRA"
+        echo "ALEX CERQUEIRA ${{ steps.tagging.outputs.new_version }}"
 
     # - name: set deployment
     #   uses: actions-hub/kubectl@master
