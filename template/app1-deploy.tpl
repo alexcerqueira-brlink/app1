@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     app: app1
   name: app1
@@ -13,12 +12,11 @@ spec:
   strategy: {}
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: app1
     spec:
       containers:
-      - image: accerq/app1:v1.0.3
+      - image: accerq/app1:VERSION
         name: app1
         ports:
         - containerPort: 80

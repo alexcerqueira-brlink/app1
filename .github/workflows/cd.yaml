@@ -48,7 +48,7 @@ jobs:
 
     - name: teste do run
       run: |
-        echo "ALEX CERQUEIRA ${{ steps.tagging.outputs.new_version }}"
+        sed 's/VERSION/${{ steps.tagging.outputs.new_version }}/g' template/app1-deploy.tpl > k8s/app1-deploy.yaml
 
     # - name: set deployment
     #   uses: actions-hub/kubectl@master
