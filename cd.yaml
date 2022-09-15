@@ -6,6 +6,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
     
     - uses: actions/checkout@v2
@@ -29,19 +30,11 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-  version:
-    runs-on: ubuntu-latest
-    steps:
-
     - name: Bump version and push tag
       id: tagging
       uses: mathieudutour/github-tag-action@v4.5
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-
-  image:
-    runs-on: ubuntu-latest
-    steps:
 
     - name: Build and push
       id: docker_build
@@ -52,10 +45,6 @@ jobs:
         file: ./Dockerfile
         platforms: linux/amd64,linux/arm64,linux/386
         tags: accerq/app1:${{ steps.tagging.outputs.new_version }}
-
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
 
     - name: Deploy Version
       run: |
