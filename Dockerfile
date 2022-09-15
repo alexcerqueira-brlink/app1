@@ -1,3 +1,3 @@
 FROM arm64v8/nginx
-RUN mkdir -p /usr/share/nginx/html/alex/
-COPY app1/* /usr/share/nginx/html/alex/
+COPY app1/* /usr/share/nginx/html/
+RUN echo "<h2>$(echo "$(date +%s%N)" |md5sum |cut -d " " -f 1)</h2>" >> /usr/share/nginx/html/teste.html
