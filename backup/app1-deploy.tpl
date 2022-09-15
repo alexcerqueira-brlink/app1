@@ -21,11 +21,4 @@ spec:
         ports:
         - containerPort: 80
         resources: {}
-        volumeMounts:
-          - name: app1
-            mountPath: "/mnt/nfs"
-      volumes:
-      - name: app1
-        persistentVolumeClaim:
-          claimName: nfs
 status: {}
