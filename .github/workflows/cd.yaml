@@ -45,19 +45,13 @@ jobs:
         platforms: linux/amd64,linux/arm64,linux/386
         tags: accerq/app1:${{ steps.tagging.outputs.new_version }}
 
-  deploy:
-    pull-request:
-      name: deploy
-      runs-on: ubuntu-latest
-      steps:
+    - name: Deploy Version
+      run: |
+        sed 's/VERSION/${{ steps.tagging.outputs.new_version }}/g' template/app1-deploy.tpl > k8s/app1-deploy.yaml
 
-      - name: Deploy Version
-        run: |
-          sed 's/VERSION/${{ steps.tagging.outputs.new_version }}/g' template/app1-deploy.tpl > k8s/app1-deploy.yaml
-
-      - name: set deployment
-        uses: actions-hub/kubectl@master
-        env:
-          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
-        with:
-          args: apply -f ./k8s/
+    - name: set deployment
+      uses: actions-hub/kubectl@master
+      env:
+        KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+      with:
+        args: apply -f ./k8s/
