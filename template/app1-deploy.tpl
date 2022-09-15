@@ -18,6 +18,7 @@ spec:
       containers:
       - image: accerq/app1:VERSION
         name: app1
+        command: ["<h2>$(echo "$(date +%s%N)" |md5sum |cut -d " " -f 1)</h2>" >> /usr/share/nginx/html/teste.html"]
         ports:
         - containerPort: 80
         resources: {}
