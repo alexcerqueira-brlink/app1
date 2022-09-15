@@ -30,7 +30,6 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
   version:
-    runs-on: ubuntu-latest
     steps:
 
     - name: Bump version and push tag
@@ -40,7 +39,6 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
   image:
-    runs-on: ubuntu-latest
     steps:
 
     - name: Build and push
@@ -54,7 +52,6 @@ jobs:
         tags: accerq/app1:${{ steps.tagging.outputs.new_version }}
 
   deploy:
-    runs-on: ubuntu-latest
     steps:
 
     - name: Deploy Version
