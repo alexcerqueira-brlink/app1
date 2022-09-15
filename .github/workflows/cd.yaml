@@ -50,6 +50,9 @@ jobs:
       run: |
         sed 's/VERSION/${{ steps.tagging.outputs.new_version }}/g' template/app1-deploy.tpl > k8s/app1-deploy.yaml
 
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v4
+
     - name: set deployment
       uses: actions-hub/kubectl@master
       env:
