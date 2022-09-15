@@ -1,43 +1,40 @@
 name: Deploy
 on:
-  push:
+  push: # A pipeline vai ser executada automaticamente toda vez que a branch main for atualizada.
     branches: [main]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # Container que sera o ambiente para executar os passos abaixo.
     steps:
-    
-    - uses: actions/checkout@v2
 
-    - name: Docker meta
+    - name: Download Repository
+    - uses: actions/checkout@v2 # Download do repositorio para o ubuntu-latest.
+
+    - name: Setup Enverimmont Build Docker
       id: docker_meta
-      uses: crazy-max/ghaction-docker-meta@v1
+      uses: crazy-max/ghaction-docker-meta@v1 # Pega os metadados do da image accerq/app1.
       with:
         images: accerq/app1
         tag-sha: true
 
-    - name: QEMU
-      uses: docker/setup-qemu-action@v1
+    - uses: docker/setup-qemu-action@v1 # Permite voce compilar o docker em diversas arquiteturas.
 
-    - name: Docker Buildx
-      uses: docker/setup-buildx-action@v1
+    - uses: docker/setup-buildx-action@v1 # Builda o container
 
-    - name: Login to Dockerhub
-      uses: docker/login-action@v1
+    - uses: docker/login-action@v1 # Login to Dockerhub
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-    - name: Bump version and push tag
+    - name: Build and Push Image
       id: tagging
-      uses: mathieudutour/github-tag-action@v4.5
+      uses: mathieudutour/github-tag-action@v4.5 # Versiona e Enviar Tags.
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Build and push
-      id: docker_build
-      uses: docker/build-push-action@v2
+    - uses: docker/build-push-action@v2
+      id: docker_build # Build em diferentes arquiteturas(platforms) e Envia
       with:
         push: true
         context: .
@@ -45,12 +42,14 @@ jobs:
         platforms: linux/amd64,linux/arm64,linux/386
         tags: accerq/app1:${{ steps.tagging.outputs.new_version }}
 
-    - name: Deploy Version
+    
+    - name: Deployment on kubernetes
+      # Versiona o deployment do kubernetes
       run: |
         sed 's/VERSION/${{ steps.tagging.outputs.new_version }}/g' template/app1-deploy.tpl > k8s/app1-deploy.yaml
 
-    - name: set deployment
-      uses: actions-hub/kubectl@master
+    
+    - uses: actions-hub/kubectl@master # Aplica o deployment no kubernetes
       env:
         KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
       with:
