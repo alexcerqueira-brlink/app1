@@ -49,6 +49,7 @@ jobs:
     - name: teste do run
       run: |
         sed 's/VERSION/${{ steps.tagging.outputs.new_version }}/g' template/app1-deploy.tpl > k8s/app1-deploy.yaml
+        cat k8s/app1-deploy.yaml
 
     # - name: set deployment
     #   uses: actions-hub/kubectl@master
