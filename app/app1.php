@@ -1,4 +1,5 @@
+<h1>
 <?
-    echo system('echo $APPNAME')
-    echo system('hostname')
+    echo gethostname();
 ?>
+</h1>
