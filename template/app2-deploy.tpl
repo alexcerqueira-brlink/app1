@@ -18,13 +18,10 @@ spec:
       containers:
       - image: accerq/app1:VERSION
         name: app2
-        command: 
-        - "/bin/bash"
-        - "-c"
-        - "echo"
-        - "<br><h1> ${HOSTNAME} </h1></br>"
-        - ">"
-        - "/usr/share/nginx/html/${APPNAME}.html"
+        command: ["/bin/bash"]
+        args: ["-c", "echo", "<br><h1> ${HOSTNAME} </h1></br>", ">", "/usr/share/nginx/html/${APPNAME}.html"]
+        command: ["/bin/bash"]
+        args: ["-c", "sleep", "3000"]
         env:
         - name: APPNAME
           value: "app2"
