@@ -5,7 +5,7 @@ metadata:
     app: app2
   name: app2
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: app2
@@ -19,7 +19,7 @@ spec:
       - image: accerq/app1:VERSION
         name: app2
         command: 
-        - "/bin/bash"
+        - "bin/bash"
         - "-c"
         - "/usr/share/nginx/html/app.sh"
         env:
