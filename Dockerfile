@@ -1,2 +1,2 @@
-FROM arm64v8/nginx
-COPY app/* /usr/share/nginx/html/
+FROM arm64v8/php:7.2-apache
+COPY app/* /var/www/html/

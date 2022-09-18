@@ -16,7 +16,7 @@ spec:
             name: app1
             port:
               number: 80
-        path: /app1.html
+        path: /app1.php
         pathType: Exact
   - host: 144.22.158.124.nip.io
     http:
@@ -26,7 +26,7 @@ spec:
             name: app2
             port:
               number: 80
-        path: /app2.html
+        path: /app2.php
         pathType: Exact
 status:
   loadBalancer:
