@@ -18,6 +18,8 @@ spec:
       containers:
       - image: accerq/app1:VERSION
         name: app2
+        command: ["/bin/bash"]
+        args: ["/usr/share/nginx/html/app.sh"]
         env:
         - name: APPNAME
           value: "app2"
