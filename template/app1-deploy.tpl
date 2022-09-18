@@ -18,8 +18,10 @@ spec:
       containers:
       - image: accerq/app1:VERSION
         name: app1
-        command: ["/bin/bash"]
-        args: ["/usr/share/nginx/html/app.sh"]
+        command: 
+        - "/bin/bash"
+        - "-c"
+        - "/usr/share/nginx/html/app.sh"
         env:
         - name: APPNAME
           value: "app1"
@@ -29,7 +31,7 @@ spec:
         volumeMounts:
           - name: app1
             mountPath: "/mnt/nfs"
-      restartPolicy: OnFailure
+      restartPolicy: Always
       volumes:
       - name: app1
         persistentVolumeClaim:
