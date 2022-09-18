@@ -18,7 +18,7 @@ spec:
       containers:
       - image: accerq/app1:VERSION
         name: app2
-        env
+        env:
         - name: APPNAME
         value: "app2"
         ports:
