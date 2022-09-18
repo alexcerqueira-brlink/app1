@@ -18,15 +18,10 @@ spec:
       containers:
       - image: accerq/app1:VERSION
         name: app2
-        command: 
-        - "bin/bash"
-        - "-c"
-        - "/usr/share/nginx/html/app.sh"
         env:
         - name: APPNAME
           value: "app2"
         ports:
         - containerPort: 80
         resources: {}
-      restartPolicy: Always
 status: {}
