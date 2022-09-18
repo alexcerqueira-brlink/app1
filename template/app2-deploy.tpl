@@ -20,7 +20,7 @@ spec:
         name: app2
         env:
         - name: APPNAME
-        value: "app2"
+          value: "app2"
         ports:
         - containerPort: 80
         resources: {}
