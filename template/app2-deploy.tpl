@@ -26,4 +26,5 @@ spec:
         ports:
         - containerPort: 80
         resources: {}
+      restartPolicy: OnFailure
 status: {}

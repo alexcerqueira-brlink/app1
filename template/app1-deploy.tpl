@@ -29,6 +29,7 @@ spec:
         volumeMounts:
           - name: app1
             mountPath: "/mnt/nfs"
+      restartPolicy: OnFailure
       volumes:
       - name: app1
         persistentVolumeClaim:
