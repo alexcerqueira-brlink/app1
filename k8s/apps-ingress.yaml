@@ -4,7 +4,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
   generation: 8
-  name: aap1-ingress
+  name: apps-ingress
   namespace: default
 spec:
   rules:

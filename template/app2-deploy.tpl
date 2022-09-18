@@ -2,33 +2,26 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: app1
-  name: app1
+    app: app2
+  name: app2
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: app1
+      app: app2
   strategy: {}
   template:
     metadata:
       labels:
-        app: app1
+        app: app2
     spec:
       containers:
       - image: accerq/app1:VERSION
-        name: app1
-        env:
+        name: app2
+        env
         - name: APPNAME
-          value: "app1"
+        value: "app2"
         ports:
         - containerPort: 80
         resources: {}
-        volumeMounts:
-          - name: app1
-            mountPath: "/mnt/nfs"
-      volumes:
-      - name: app1
-        persistentVolumeClaim:
-          claimName: nfs
 status: {}

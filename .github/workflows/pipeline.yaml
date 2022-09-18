@@ -47,6 +47,7 @@ jobs:
       # Versiona o deployment do kubernetes
       run: |
         sed 's/VERSION/${{ steps.tagging.outputs.new_version }}/g' template/app1-deploy.tpl > k8s/app1/app1-deploy.yaml
+        sed 's/VERSION/${{ steps.tagging.outputs.new_version }}/g' template/app2-deploy.tpl > k8s/app2/app2-deploy.yaml
 
     
     - uses: actions-hub/kubectl@master # Aplica o deployment no kubernetes
