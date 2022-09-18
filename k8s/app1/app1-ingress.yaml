@@ -1,0 +1,34 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  generation: 8
+  name: aap1-ingress
+  namespace: default
+spec:
+  rules:
+  - host: 144.22.158.124.nip.io
+    http:
+      paths:
+      - backend:
+          service:
+            name: app1
+            port:
+              number: 80
+        path: /app1.html
+        pathType: Exact
+  - host: 144.22.158.124.nip.io
+    http:
+      paths:
+      - backend:
+          service:
+            name: app2
+            port:
+              number: 80
+        path: /app2.html
+        pathType: Exact
+status:
+  loadBalancer:
+    ingress:
+    - ip: 10.0.0.9
